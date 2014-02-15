@@ -3,6 +3,8 @@ huskekort
 
 Genererer huskekort udfra data på `spjdrpedia.dk/wiki/Huskekort`.
 
+Se en live udgave på http://ny.spjdr.dk/huskekort.
+
 
 ## HOW TO
 
