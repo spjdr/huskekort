@@ -1,0 +1,64 @@
+<?php error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE); ?>
+<?php include('lib/functions.php'); ?>
+<html manifest="huskekort.manifest">
+<head>
+  <title>Kredit</title>
+  <base href="http://ny.spjdr.dk/huskekort/" />
+  <meta charset="utf-8">
+  <meta name="description" content="Kreditering af skaberne af huskekort for spejdere. Alle de gode tips og tricks med pionering, madlavning, koder, signalering, iagttagelse og lejrliv lige ved hånden.">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta property="og:image" content="assets/img/huskekort-icon.png"/>
+  <link rel="apple-touch-icon" href="assets/img/huskekort-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/img/huskekort-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/img/huskekort-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/huskekort-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/img/huskekort-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/img/huskekort-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/img/huskekort-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/img/huskekort-icon-152x152.png" />
+  <link rel="stylesheet" href="assets/css/screen.css" />
+</head>
+<body>
+<div class="title">
+  <h1>Kredit</h1>
+  <div class="tagline">fra <a href="http://spjdrpedia.dk">spjdrpedia.dk</a></div>
+</div>
+
+<p>Huskekortene er udgivet under en fri licens: <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.da">Creative Commons Navngivelse/Del på samme vilkår 3.0</a>. Indholdet må ikke bruges til uretmæssigt at lade sig associere med spjdr, SPJDRpedia ell. lign.</p>
+
+<p>Følgende personer har bidraget til huskekortene via <a href="http://spjdrpedia.dk/wiki/Forside">spjdrpedia.dk</a>,</p>
+
+<?php include('kort/credits.html') ?>
+
+<p>Derudover bruger vi ikonerne <a href="http://spjdrpedia.dk/wiki/Ambidexter">Ambidexter</a>. SPJDRpedias logo er designet af <a href="http://spjdrpedia.dk/wiki/Bruger:Suneamstrup">Sune</a>.</p>
+
+<div class="visualclear"></div>
+
+<div class="all">
+<h2>Alle kort</h2>
+<?php echo printcard('Alle kort','alle','',false,false); ?>
+<?php echo printcard('Alle kort','alleA7',false,'',false); ?>
+<?php echo printcard('Alle kort','alleA8',false,false,''); ?>
+</div>
+
+<?php $f = file_get_contents('kort/meta.json'); ?>
+<?php $meta = json_decode($f,true); ?>
+
+<div class="visualclear"></div>
+</div>
+<div class="footer">
+  <p>
+  Indholdet er udgivet under 
+  <a rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/deed.da">Creative Commons Navngivelse/Del på samme vilkår 3.0</a>
+  <p>
+  Alle huskekort må altså frit downloades, printes, bruges, ændres, genudgives eller på anden måde videreformidles på betingelse af at de genudgives under en tilsvarende licens og at <a href="credit.php">alle kunstnerne krediteres</a>.
+  </p>
+  <p>
+    Sidst opdateret <?php echo $meta['updated'] ?>
+  </p>
+  </p>
+</div>
+
+</body>
+</html>

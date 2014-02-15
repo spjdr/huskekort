@@ -1,0 +1,7 @@
+*.log
+*.aux
+*.pdf
+*.out
+all.tex
+fullcredits.tex
+kort/*

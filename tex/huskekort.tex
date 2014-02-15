@@ -1,0 +1,106 @@
+\documentclass{article}
+
+% page size A7
+\usepackage{geometry} 
+\geometry{papersize={105mm,74mm},margin={5mm,5mm}}  % a7 size
+
+% reduce textwidth
+\setlength\textwidth{93mm}%
+
+% tables (oh shiny new latex)
+\usepackage{tabu}
+\extrarowsep=4pt
+
+% hyphenation
+\usepackage[danish]{babel}
+
+% tikz (for drawing borders and underlines)
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
+
+% landscape mode (for rotated cards)
+\usepackage{lscape}
+
+% minimal paragrapha and list spacing
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{2mm}
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=1pt, topsep=0pt}
+\setlist[enumerate]{itemsep=1pt, topsep=0pt}
+
+% fonts (we wnat to use bitter)
+\usepackage{fontspec}
+% \newfontfamily\bitter{Bitter} 	% you must have Bitter font installed on your system
+\newfontfamily\istok{Helvetica} % you must have Helvetica installed on your system
+
+% Renders
+% title and text
+\newcommand{\cardtitle}[1]{\textbf{\fontspec[Extension = .otf,Path = ../fonts/Bitter/,UprightFont = *-Regular,BoldFont = *-Bold]{Bitter}\fontsize{6mm}{.9em}\selectfont#1}\newline}
+\newcommand{\cardtext}[1]{{\istok \fontsize{3.7mm}{1em}\selectfont #1}}
+
+% background image (not used)
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{
+	\put(0,0){
+		\parbox[b][\paperheight]{\paperwidth}{%
+		\vfill
+		\centering
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{background.png} % saved in background png
+		\vfill
+	}}
+}
+
+% The card
+\newcommand{\card}[3]{\begin{tikzpicture}[overlay,remember picture]
+    \draw [line width=2mm]
+        ($ (current page.north west) + (1mm,-1mm) $)
+        rectangle
+        ($ (current page.south east) + (-1mm,1mm) $);
+    \draw [line width=3pt, dotted] % (10mm, -10mm) -- (60mm, -10mm );
+        ($ (current page.north west) + (6mm, -13mm) $)
+        --
+        ($ (current page.north east) + (-6mm, -13mm) $);
+\end{tikzpicture}
+\setlength\unitlength{1mm}%
+\begin{picture}(0,0)
+\put(84,-2){#2}%
+\put(0,-1){\cardtitle{#1}}
+\end{picture}
+\vspace{5mm}
+
+\cardtext{#3}
+}
+
+% The rotated card
+\newcommand{\rcard}[3]{\begin{landscape}\begin{tikzpicture}[overlay,remember picture]
+    \draw [line width=2mm]
+        ($ (-4mm,7.5mm) $)
+        rectangle
+        ($ (74mm, -105mm) + (-6mm,9.5mm) $);
+    \draw [line width=3pt, dotted] % (10mm, -10mm) -- (60mm, -10mm );
+        ($ (-4mm,9mm) + (5mm, -14mm) $)
+        --
+        ($ (68mm, 9mm) + (-5mm, -14mm) $);
+\end{tikzpicture}
+\setlength\unitlength{1mm}%
+\begin{picture}(0,0)
+\put(56,-2){#2}%
+\put(0,-2){\cardtitle{#1}}
+\end{picture}
+\vspace{6mm}
+
+\cardtext{#3}
+\end{landscape}
+}
+
+% no pagestyle
+\thispagestyle{empty}
+
+\begin{document}
+\pagenumbering{gobble}
+\thispagestyle{empty}
+
+\input{all}
+
+\end{document}
